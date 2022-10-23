@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './cars.types';
 
 @Injectable()
@@ -15,9 +15,8 @@ export class CarsService {
 
   findOne(id: number) {
     const car = this.cars.find((car) => car.id === id);
-    if (!car) {
-      throw new HttpException('Car not found', HttpStatus.NOT_FOUND);
-    }
+    if (!car) throw new NotFoundException('Car not found');
+
     return car;
   }
 }
