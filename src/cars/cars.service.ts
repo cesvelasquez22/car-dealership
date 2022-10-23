@@ -19,4 +19,18 @@ export class CarsService {
 
     return car;
   }
+
+  create(car: Car) {
+    this.cars.push(car);
+  }
+
+  update(id: number, car: Car) {
+    const index = this.cars.findIndex((car) => car.id === id);
+    this.cars[index] = car;
+  }
+
+  delete(id: number) {
+    const index = this.cars.findIndex((car) => car.id === id);
+    this.cars.splice(index, 1);
+  }
 }
