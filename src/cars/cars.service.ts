@@ -22,7 +22,8 @@ export class CarsService {
   }
 
   create(car: any) {
-    this.cars.push(car);
+    const newCar = { uuid: uuid(), ...car };
+    this.cars.push(newCar);
   }
 
   update(uuid: string, car: Car) {
