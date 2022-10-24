@@ -9,8 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { CreateCarDto } from './dto/create-car.dto';
-import { Car } from './interfaces/car.interface';
+import { CreateCarDto, UpdateCarDto } from './dto';
 
 @Controller('cars')
 // @UsePipes(ValidationPipe)
@@ -33,7 +32,7 @@ export class CarsController {
   }
 
   @Patch(':uuid')
-  async update(@Param('uuid', ParseUUIDPipe) uuid: string, @Body() car: Car) {
+  async update(@Param('uuid', ParseUUIDPipe) uuid: string, @Body() car: UpdateCarDto) {
     return this.carsService.update(uuid, car);
   }
 
