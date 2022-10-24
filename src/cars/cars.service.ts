@@ -41,7 +41,7 @@ export class CarsService {
   }
 
   delete(uuid: string) {
-    const index = this.cars.findIndex((car) => car.uuid === uuid);
-    this.cars.splice(index, 1);
+    this.findOne(uuid);
+    this.cars = this.cars.filter((car) => car.uuid !== uuid);
   }
 }
