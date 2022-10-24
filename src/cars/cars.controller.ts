@@ -9,7 +9,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { Car } from './car.types';
+import { CreateCarDto } from './dto/create-car.dto';
+import { Car } from './interfaces/car.interface';
 
 @Controller('cars')
 export class CarsController {
@@ -26,8 +27,8 @@ export class CarsController {
   }
 
   @Post()
-  async create(@Body() car: Car) {
-    return this.carsService.create(car);
+  async create(@Body() createCarDto: CreateCarDto) {
+    return this.carsService.create(createCarDto);
   }
 
   @Patch(':uuid')
