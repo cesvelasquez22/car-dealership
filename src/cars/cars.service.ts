@@ -1,20 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Car } from './cars.types';
+import { Car } from './car.types';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class CarsService {
   private cars: Car[] = [
-    { id: 1, make: 'Ford', model: 'F150', year: 2015 },
-    { id: 2, make: 'Chevy', model: 'Silverado', year: 2016 },
-    { id: 3, make: 'Dodge', model: 'Ram', year: 2017 },
+    { uuid: uuid(), make: 'Ford', model: 'F150', year: 2015 },
+    { uuid: uuid(), make: 'Chevy', model: 'Silverado', year: 2016 },
+    { uuid: uuid(), make: 'Dodge', model: 'Ram', year: 2017 },
   ];
 
   findAll() {
     return this.cars;
   }
 
-  findOne(id: number) {
-    const car = this.cars.find((car) => car.id === id);
+  findOne(uuid: string) {
+    const car = this.cars.find((car) => car.uuid === uuid);
     if (!car) throw new NotFoundException('Car not found');
 
     return car;
@@ -24,13 +25,13 @@ export class CarsService {
     this.cars.push(car);
   }
 
-  update(id: number, car: Car) {
-    const index = this.cars.findIndex((car) => car.id === id);
+  update(uuid: string, car: Car) {
+    const index = this.cars.findIndex((car) => car.uuid === uuid);
     this.cars[index] = car;
   }
 
-  delete(id: number) {
-    const index = this.cars.findIndex((car) => car.id === id);
+  delete(uuid: string) {
+    const index = this.cars.findIndex((car) => car.uuid === uuid);
     this.cars.splice(index, 1);
   }
 }
