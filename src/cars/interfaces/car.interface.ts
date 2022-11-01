@@ -1,6 +1,6 @@
 export interface Car {
   uuid: string;
-  make: string;
+  brand: string;
   model: string;
   year: number;
 }

@@ -1,7 +1,7 @@
 import { IsInt, IsString } from 'class-validator';
 export class CreateCarDto {
   @IsString()
-  readonly make: string;
+  readonly brand: string;
 
   @IsString()
   readonly model: string;
